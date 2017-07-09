@@ -1,0 +1,25 @@
+{
+    "name": "guenbakku/simple-aws-manager",
+    "description": "Simple CakePHP Plugin for managing AWS resources",
+    "type": "cakephp-plugin",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.0",
+        "cakephp/cakephp": "^3.4",
+        "aws/aws-sdk-php": "^3.31"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7|^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Guenbakku\\SAM\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Guenbakku\\SAM\\Test\\": "tests",
+            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
+        }
+    }
+}
