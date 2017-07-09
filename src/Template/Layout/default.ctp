@@ -19,11 +19,12 @@
     <?= $this->Html->css("{$plugin}./packages/bootstrap/css/bootstrap.min.css") ?>
     <?= $this->Html->css("{$plugin}./packages/bootstrap-material-design-master/css/bootstrap-material-design.min.css") ?>
     <?= $this->Html->css("{$plugin}./packages/bootstrap-material-design-master/css/ripples.min.css") ?>
+    <?= $this->Html->css("{$plugin}.style.css") ?>
     <?= $this->fetch('css') ?>
 </head>
 <body>
     <?= $this->element('default/site-header') ?>
-    <div class="container">
+    <div class="container-fluid">
         <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
     </div>
