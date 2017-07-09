@@ -20,8 +20,9 @@ class Ec2InstancesController extends AppController {
      * @return \Cake\Http\Response|void
      */
     public function index() {
-        // $Instance = new Instance;
-        // $result = $Instance->list('us-east-1');
-        // debug($result);
+        $Instance = new Instance;
+        $instances = $Instance->list('us-east-1');
+        // debug($instances);
+        $this->set(compact('instances'));
     }
 }

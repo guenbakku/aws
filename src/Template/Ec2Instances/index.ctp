@@ -1,6 +1,8 @@
 <?php
-    $this->append('css', $this->html->css("$plugin./packages/jquery-bootgrid/css/jquery.bootgrid.min.css"));
-    $this->append('script', $this->html->script("$plugin./packages/jquery-bootgrid/js/jquery.bootgrid.min.js"));
+use Cake\Utility\Hash;
+    
+$this->append('css', $this->html->css("$plugin./packages/jquery-bootgrid/css/jquery.bootgrid.min.css"));
+$this->append('script', $this->html->script("$plugin./packages/jquery-bootgrid/js/jquery.bootgrid.min.js"));
 ?>
 
 <?php $this->start('css') ?>
@@ -17,15 +19,18 @@
 
 <script type="text/javascript">
     var grid = $("#bootgrid").bootgrid({
+        rowCount: -1, // Turn off navigation
+        caseSensitive: false,
         formatters: {
             "commands": function(column, row) {
-                return '<a class="btn btn-danger btn-sm btn-raised command-restart" data-instance-id="aaa-bbb"><?= __d('instance', 'restart') ?>'+row.id+'</a>';
-                // return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> ";
+                return '<a class="btn btn-danger btn-sm btn-raised command-restart"><?= __d('instance', 'restart') ?></a>';
             }
         }
     }).on("loaded.rs.jquery.bootgrid", function() {
         grid.find('.command-restart').click(function(evt) {
-            alert($(this).data('instance-id'));
+            var rowId = $(this).parents('tr').data('rowId');
+            var instanceId = grid.bootgrid('getCurrentRows')[rowId]['instance-id'];
+            console.log(instanceId);
         });
     });
 </script>
@@ -34,7 +39,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?= __('Instances list') ?></h3>
+        <div class="panel-title"><?= __('EC2 instances list') ?></div>
     </div>
     <div class="panel-body">
         <div class="row">
@@ -59,25 +64,27 @@
                 <table id="bootgrid" class="table table-border table-hover">
                     <thead>
                         <tr>
-                            <th data-column-id="id" data-type="numeric" data-width="50px">#</th>
                             <th data-column-id="name"><?= __d('instance', 'name') ?></th>
-                            <th data-column-id="instance_type"><?= __d('instance', 'instance type') ?></th>
-                            <th data-column-id="ip4_address"><?= __d('instance', 'ip4 address') ?></th>
+                            <th data-column-id="public-ip-address"><?= __d('instance', 'public ip address') ?></th>
+                            <th data-column-id="instance-type"><?= __d('instance', 'instance type') ?></th>
+                            <th data-column-id="key-name"><?= __d('instance', 'key name') ?></th>
                             <th data-column-id="status"><?= __d('instance', 'status') ?></th>
                             <th data-column-id="restart" data-formatter="commands" data-sortable="false" data-width="120px"><?= __d('instance', 'restart') ?></th>
+                            <th data-column-id="instance-id" data-searchable="false" data-visible="false"><?= __d('instance', 'instance id') ?></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php for($i=1; $i<10; $i++): ?>
+                        <?php foreach($instances as $item): ?>
                         <tr>
-                            <td><?=$i?></td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
+                            <td><?= Hash::get($item, 'Tags.Name') ?></td>
+                            <td><?= Hash::get($item, 'PublicIpAddress') ?></td>
+                            <td><?= Hash::get($item, 'InstanceType') ?></td>
+                            <td><?= Hash::get($item, 'KeyName') ?></td>
+                            <td><?= Hash::get($item, 'State.Name') ?></td>
                             <td></td>
+                            <td><?= Hash::get($item, 'InstanceId') ?></td>
                         </tr>
-                        <?php endfor ?>
+                        <?php endforeach ?>
                     </tbody>
                 </table>
             </div>

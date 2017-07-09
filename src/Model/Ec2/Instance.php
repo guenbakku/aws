@@ -22,7 +22,24 @@ class Instance extends Aws{
         ]);
         
         $result = $ec2->describeInstances()->toArray();
-        return Hash::get($result, 'Reservations.0.Instances');
+        $result = Hash::get($result, 'Reservations.0.Instances');
+        $result = $this->extractTag($result);
+        return $result;
+    }
+    
+    /**
+     * Extract Tags item in result to ['key' => value] format
+     *
+     * @param   array: instances list
+     * @return  array: instances list
+     */
+    public function extractTag($result) {
+        foreach ($result as &$item) {
+            if (count($item['Tags']) > 0) {
+                $item['Tags'] = array_column($item['Tags'], 'Value', 'Key');
+            }
+        }
+        return $result;
     }
     
     /**
