@@ -1,7 +1,7 @@
 <?php
-namespace Guenbakku\Aws\Controller;
+namespace Guenbakku\Sam\Controller;
 
-use Guenbakku\Aws\Controller\AppController;
+use Guenbakku\Sam\Controller\AppController;
 
 /**
  * Users Controller
