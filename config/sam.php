@@ -19,8 +19,8 @@ return [
         ],
         'credentials' => [
             'default' => [
-                'key' => 'AKIAIKIVJKTSCDTIFOEA',
-                'secret' => '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',
+                'key' => null,
+                'secret' => null,
             ],
             'uses' => 'default',
         ],
