@@ -29,16 +29,9 @@ class Ec2InstancesController extends AppController {
      */
     public function index($region = null) {
         $region = $region?:Configure::read('Sam.regions.0');
-        $this->set(compact('region'));
-        
-    }
-    
-    public function apiRead() {
-        $region = $this->request->query('region')?:Configure::read('Sam.regions.0');
         $Instance = new Instance;
         $instances = $Instance->list($region);
-        $this->set(compact('instances'));
-        $this->render('ec2instances/json/api_read');
+        $this->set(compact('region', 'instances'));
     }
     
     public function apiRestart() {
