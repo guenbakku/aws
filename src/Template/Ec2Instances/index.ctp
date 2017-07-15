@@ -1,4 +1,5 @@
 <?php
+use Cake\Core\Configure;
 use Cake\Utility\Hash;
     
 $this->append('css', $this->html->css("$plugin./packages/jquery-bootgrid/css/jquery.bootgrid.min.css"));
@@ -32,7 +33,33 @@ $this->append('script', $this->html->script("$plugin./packages/jquery-bootgrid/j
             var instanceId = grid.bootgrid('getCurrentRows')[rowId]['instance-id'];
             console.log(instanceId);
         });
+    }).on("loaded.rs.jquery.bootgrid", function() {
+        $('#bootgrid-header').find('.actionBar').append($("#region-btn"));
+        
     });
+    
+    var load = function (region) {
+        $.ajax ({
+            url: '/sam/ec2instances/api-read',
+            type: "GET",
+            data: {'region': region},
+            beforeSend: function(){
+                grid.hide();
+                grid.next('p').remove();
+                grid.after('<p class="text-center">Loading...</p>');
+            }
+        }).done(function (data) {
+            data = $.parseJSON(data);
+            grid.bootgrid('append', data.rows);
+            grid.next('p').remove();
+            grid.show();
+        }).fail(function (data) {
+            console.log(data);
+            grid.next('p').text('Error');
+        });
+    };
+    
+    load('<?= $region ?>');
 </script>
 
 <?php $this->end() ?>
@@ -44,50 +71,42 @@ $this->append('script', $this->html->script("$plugin./packages/jquery-bootgrid/j
     <div class="panel-body">
         <div class="row">
             <div class="col-sm-12">
-                <label ><?= __('Region') ?></label>
-                <div class="btn-group">
-                    <div class="btn-group">
-                        <a data-target="#" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">
-                            Dropdown <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0)">Dropdown link</a></li>
-                            <li><a href="javascript:void(0)">Dropdown link</a></li>
-                            <li><a href="javascript:void(0)">Dropdown link</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
                 <table id="bootgrid" class="table table-border table-hover">
                     <thead>
                         <tr>
                             <th data-column-id="name"><?= __d('instance', 'name') ?></th>
                             <th data-column-id="public-ip-address"><?= __d('instance', 'public ip address') ?></th>
+                            <th data-column-id="instance-id" data-searchable="false"><?= __d('instance', 'instance id') ?></th>
                             <th data-column-id="instance-type"><?= __d('instance', 'instance type') ?></th>
                             <th data-column-id="key-name"><?= __d('instance', 'key name') ?></th>
                             <th data-column-id="status"><?= __d('instance', 'status') ?></th>
                             <th data-column-id="restart" data-formatter="commands" data-sortable="false" data-width="120px"><?= __d('instance', 'restart') ?></th>
-                            <th data-column-id="instance-id" data-searchable="false" data-visible="false"><?= __d('instance', 'instance id') ?></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php foreach($instances as $item): ?>
-                        <tr>
-                            <td><?= Hash::get($item, 'Tags.Name') ?></td>
-                            <td><?= Hash::get($item, 'PublicIpAddress') ?></td>
-                            <td><?= Hash::get($item, 'InstanceType') ?></td>
-                            <td><?= Hash::get($item, 'KeyName') ?></td>
-                            <td><?= Hash::get($item, 'State.Name') ?></td>
-                            <td></td>
-                            <td><?= Hash::get($item, 'InstanceId') ?></td>
-                        </tr>
-                        <?php endforeach ?>
-                    </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="pull-left" id="region-btn">
+    <label class="control-label"><?= __('Region') ?></label>
+    <div class="btn-group">
+        <div class="btn-group">
+            <a data-target="#" class="btn dropdown-toggle" data-toggle="dropdown">
+                <span class="current"><?= __d('instance', $region) ?></span> <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <?php foreach(Configure::read('Sam.regions') as $region): ?>
+                <li>
+                    <?= $this->Html->link(__d('instance', $region), [
+                        'controller' => 'ec2instances',
+                        'action' => 'index',
+                        $region,
+                    ]) ?>
+                </li>
+                <?php endforeach ?>
+            </ul>
         </div>
     </div>
 </div>

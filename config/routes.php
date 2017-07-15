@@ -7,6 +7,8 @@ Router::plugin(
     'Guenbakku/Sam',
     ['path' => '/sam'],
     function (RouteBuilder $routes) {
+        $routes->extensions(['json']);
         $routes->fallbacks(DashedRoute::class);
     }
 );
+

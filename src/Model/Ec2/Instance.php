@@ -21,25 +21,9 @@ class Instance extends Aws{
             'credentials' => $this->credentials,
         ]);
         
-        $result = $ec2->describeInstances()->toArray();
-        $result = Hash::get($result, 'Reservations.0.Instances');
-        $result = $this->extractTag($result);
-        return $result;
-    }
-    
-    /**
-     * Extract Tags item in result to ['key' => value] format
-     *
-     * @param   array: instances list
-     * @return  array: instances list
-     */
-    public function extractTag($result) {
-        foreach ($result as &$item) {
-            if (count($item['Tags']) > 0) {
-                $item['Tags'] = array_column($item['Tags'], 'Value', 'Key');
-            }
-        }
-        return $result;
+        $response = $ec2->describeInstances()->toArray();
+        $response = $this->simplify($response);
+        return $response;
     }
     
     /**
@@ -50,5 +34,33 @@ class Instance extends Aws{
      */
     public function restart($instaceId) {
         
+    }
+    
+    /**
+     * Reduce hierarchy number of response from AWS
+     *
+     * @param   array: instances list
+     * @return  array: hierarchy reduced instances list
+     */
+    protected function simplify($response) {
+        $response = $response['Reservations'];
+        foreach ($response as &$item) {
+            $item = $item['Instances'][0];
+            $item = $this->tagsToKeyVal($item);
+        }
+        return $response;
+    }
+    
+    /**
+     * Extract Tags item in result to ['key' => value] format
+     *
+     * @param   array: instance info
+     * @return  array: instance info
+     */
+    protected function tagsToKeyVal($instance) {
+        if (count($instance['Tags']) > 0) {
+            $instance['Tags'] = array_column($instance['Tags'], 'Value', 'Key');
+        }
+        return $instance;
     }
 }
