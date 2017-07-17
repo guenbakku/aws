@@ -46,5 +46,36 @@ return [
 ];
 ```
 
-**Note:**
-You can override plugin's config content by simply write same key into your `config/sam.php`.
+### Note:
+
+* You can override plugin's config content by simply write same key into your `config/sam.php`.
+* Please set right policy for credentials which you attend to use with this plugin. 
+
+**Sample for AWS Policy:**
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeInstances"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:RebootInstances"
+            ],
+            "Condition": {
+                "StringEquals": {
+                    "ec2:ResourceTag/User": "me"
+                }
+            },
+            "Resource": "*"
+        }
+    ]
+}
+```
