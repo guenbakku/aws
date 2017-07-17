@@ -1,0 +1,3 @@
+webroot/packages/* linguist-vendored
+webroot/js/bootbox.min.js linguist-vendored
+webroot/js/jquery-2.2.4.min.js linguist-vendored
