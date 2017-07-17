@@ -17,7 +17,9 @@ $this->append('script', $this->html->script("{$this->plugin}./packages/jquery-bo
             caseSensitive: false,
             formatters: {
                 "commands": function(column, row) {
-                    return '<a class="btn btn-danger btn-sm btn-raised command-restart"><?= __d($this->plugin, 'restart') ?></a>';
+                    var disabledClass = row.status == 'running'? '' : 'disabled';
+                    return '<a class="btn btn-danger btn-sm btn-raised command-restart ' 
+                            + disabledClass + '"><?= __d($this->plugin, 'restart') ?></a>';
                 }
             }
         }).on("loaded.rs.jquery.bootgrid", function() {
