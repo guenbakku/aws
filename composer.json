@@ -3,6 +3,12 @@
     "description": "Simple CakePHP Plugin for managing AWS resources",
     "type": "cakephp-plugin",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "NVB",
+            "homepage": "http://nvb-online.com"
+        }
+    ],
     "require": {
         "php": ">=7.0",
         "cakephp/cakephp": "^3.4",
@@ -13,12 +19,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Guenbakku\\SAM\\": "src"
+            "Guenbakku\\Sam\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Guenbakku\\SAM\\Test\\": "tests",
+            "Guenbakku\\Sam\\Test\\": "tests",
             "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
         }
     }
