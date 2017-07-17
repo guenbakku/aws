@@ -1,6 +1,7 @@
 <?php
 return [
-    'Sam' => [
+    'Guenbakku/Sam' => [
+        'sitename' => 'Simple AWS Manager',
         'regions' => [
             'us-east-1',
             'us-east-2',
@@ -23,6 +24,14 @@ return [
                 'secret' => null,
             ],
             'uses' => 'default',
+        ],
+        'describeInstances' => [
+            'Filters' => [
+                [
+                    'Name' => 'tag:User',
+                    'Values' => ['me'],
+                ],
+            ],
         ],
     ],
 ];

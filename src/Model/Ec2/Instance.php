@@ -2,6 +2,7 @@
 
 namespace Guenbakku\Sam\Model\Ec2;
 
+use Cake\Core\Configure;
 use Cake\Utility\Hash;
 use Aws\Ec2\Ec2Client;
 use Guenbakku\Sam\Model\Aws;
@@ -14,14 +15,20 @@ class Instance extends Aws{
      * @param   string: region code
      * @return  array: ec2 instances info
      */
-    public function list($region) {
+    public function list($region=null) {
+        if (empty($region)) {
+            $region = $this->region();
+        }
+        
         $ec2 = new Ec2Client([
             'version' => 'latest',
             'region' => $region,
-            'credentials' => $this->credentials,
+            'credentials' => $this->credentials(),
         ]);
         
-        $response = $ec2->describeInstances()->toArray();
+        $response = $ec2->describeInstances([
+            'Filters' => Configure::read("{$this->plugin}.describeInstances.Filters"),
+        ])->toArray();
         $response = $this->simplify($response);
         return $response;
     }
@@ -32,8 +39,21 @@ class Instance extends Aws{
      * @param   string: EC2 instance id
      * @return  void
      */
-    public function restart($instaceId) {
+    public function restart($instanceId) {
+        $ec2 = new Ec2Client([
+            'version' => 'latest',
+            'region' => 'us-east-1',
+            'credentials' => $this->credentials(),
+        ]);
         
+        $result = $ec2->rebootInstances([
+            'DryRun' => true,
+            'InstanceIds' => [$instanceId],
+        ]);
+        
+        // According to document, rebootInstances() always returns 
+        // an empty array, so I hard coding 'return true' here.
+        return true;
     }
     
     /**

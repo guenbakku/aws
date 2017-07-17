@@ -27,15 +27,22 @@ class Ec2InstancesController extends AppController {
      *
      * @return \Cake\Http\Response|void
      */
-    public function index($region = null) {
-        $region = $region?:Configure::read('Sam.regions.0');
+    public function index() {
         $Instance = new Instance;
-        $instances = $Instance->list($region);
-        $this->set(compact('region', 'instances'));
+        $instances = $Instance->list();
+        $this->set(compact('instances'));
     }
     
     public function apiRestart() {
         $instanceId = $this->request->query('instanceId');
         $Instance = new Instance;
+    }
+    
+    public function test($id) {
+        // debug($this->request->plugin);
+        // $this->render(false);
+        $Instance = new Instance;
+        // debug($Instance->restart($id));
+        $Instance->setRegion('Bach'); 
     }
 }

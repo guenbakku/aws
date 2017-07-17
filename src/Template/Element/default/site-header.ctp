@@ -1,3 +1,7 @@
+<?php
+    use Cake\Core\Configure;
+?>
+
 <div class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -6,7 +10,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Simple AWS Manager</a>
+            <a class="navbar-brand" href="#"><?= Configure::read("{$this->plugin}.sitename") ?></a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <?= $this->cell("{$this->plugin}.Region", ['rootview' => $this]) ?>
         </div>
     </div>
 </div>
