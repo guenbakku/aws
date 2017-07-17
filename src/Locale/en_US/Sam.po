@@ -1,41 +1,90 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright NVB <vanbach1213@gmail.com>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2017-07-17 12:14+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Template/Ec2Instances/index.ctp:22
+msgid "Restart"
+msgstr "Restart"
+
+#: Template/Ec2Instances/index.ctp:72
+msgid "EC2 instances"
+msgstr "EC2 instances"
+
+#: Template/Ec2Instances/index.ctp:81
+msgid "Name"
+msgstr "Name"
+
+#: Template/Ec2Instances/index.ctp:82
+msgid "Public ip address"
+msgstr "Public ip address"
+
+#: Template/Ec2Instances/index.ctp:83
+msgid "Instance id"
+msgstr "Instance id"
+
+#: Template/Ec2Instances/index.ctp:84
+msgid "Instance type"
+msgstr "Instance type"
+
+#: Template/Ec2Instances/index.ctp:85
+msgid "Key name"
+msgstr "Key name"
+
+#: Template/Ec2Instances/index.ctp:86
+msgid "Status"
+msgstr "Status"
+
+#: Region names
 msgid "us-east-1"
 msgstr "US East (N. Virginia)"
-
+#:--
 msgid "us-east-2"
 msgstr "US East (Ohio)"
-
+#:--
 msgid "us-west-1"
 msgstr "US West (N. California)"
-
+#:--
 msgid "us-west-2"
 msgstr "US West (Oregon)"
-
+#:--
 msgid "ap-south-1"
 msgstr "Asia Pacific (Mumbai)"
-
+#:--
 msgid "ap-northeast-2"
 msgstr "Asia Pacific (Seoul)"
-
+#:--
 msgid "ap-southeast-1"
 msgstr "Asia Pacific (Singapore)"
-
+#:--
 msgid "ap-southeast-2"
 msgstr "Asia Pacific (Sydney)"
-
+#:--
 msgid "ap-northeast-1"
 msgstr "Asia Pacific (Tokyo)"
-
+#:--
 msgid "ca-central-1"
 msgstr "Canada (Central)"
-
+#:--
 msgid "eu-central-1"
 msgstr "EU (Frankfurt)"
-
+#:--
 msgid "eu-west-1"
 msgstr "EU (Ireland)"
-
+#:--
 msgid "eu-west-2"
 msgstr "EU (London)"
-
+#:--
 msgid "sa-east-1"
 msgstr "South America (São Paulo)"

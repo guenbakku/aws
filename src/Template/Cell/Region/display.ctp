@@ -14,12 +14,12 @@
 <ul class="nav navbar-nav navbar-right">
     <li class="dropdown region-btn">
         <a href="#" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
-            <span class="currentRegion"><?= __d($this->plugin, $currentRegion) ?></span> <b class="caret"></b>
+            <span class="currentRegion"><?= __d('Guenbakku/Sam', $currentRegion) ?></span> <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
             <?php foreach($regions as $region): ?>
-            <li class="narrow">
-                <?= $this->Html->link(__d($this->plugin, $region),
+            <li class="narrow <?= $currentRegion==$region? 'active' : '' ?>">
+                <?= $this->Html->link(__d('Guenbakku/Sam', $region),
                     [
                         'controller' => 'Regions',
                         'action' => 'change',

@@ -19,7 +19,7 @@ $this->append('script', $this->html->script("{$this->plugin}./packages/jquery-bo
                 "commands": function(column, row) {
                     var disabledClass = row.status == 'running'? '' : 'disabled';
                     return '<a class="btn btn-danger btn-sm btn-raised command-restart ' 
-                            + disabledClass + '"><?= __d($this->plugin, 'restart') ?></a>';
+                           + disabledClass + '"><?= __d('Guenbakku/Sam', 'Restart') ?></a>';
                 }
             }
         }).on("loaded.rs.jquery.bootgrid", function() {
@@ -69,7 +69,7 @@ $this->append('script', $this->html->script("{$this->plugin}./packages/jquery-bo
 
 <div class="panel panel-default">
     <div class="panel-heading test">
-        <div class="panel-title"><?= __d($this->plugin, 'EC2 instances') ?></div>
+        <div class="panel-title"><?= __d('Guenbakku/Sam', 'EC2 instances') ?></div>
     </div>
     <div class="panel-body">
         <div class="row">
@@ -78,13 +78,13 @@ $this->append('script', $this->html->script("{$this->plugin}./packages/jquery-bo
                     <table id="bootgrid" class="table table-border table-hover">
                         <thead>
                             <tr>
-                                <th data-column-id="name"><?= __d($this->plugin, 'name') ?></th>
-                                <th data-column-id="public-ip-address"><?= __d($this->plugin, 'public ip address') ?></th>
-                                <th data-column-id="instance-id"><?= __d($this->plugin, 'instance id') ?></th>
-                                <th data-column-id="instance-type"><?= __d($this->plugin, 'instance type') ?></th>
-                                <th data-column-id="key-name"><?= __d($this->plugin, 'key name') ?></th>
-                                <th data-column-id="status"><?= __d($this->plugin, 'status') ?></th>
-                                <th data-column-id="restart" data-formatter="commands" data-sortable="false" data-width="120px"><?= __d('instance', 'restart') ?></th>
+                                <th data-column-id="name"><?= __d("Guenbakku/Sam", 'Name') ?></th>
+                                <th data-column-id="public-ip-address"><?= __d('Guenbakku/Sam', 'Public ip address') ?></th>
+                                <th data-column-id="instance-id"><?= __d('Guenbakku/Sam', 'Instance id') ?></th>
+                                <th data-column-id="instance-type"><?= __d('Guenbakku/Sam', 'Instance type') ?></th>
+                                <th data-column-id="key-name"><?= __d('Guenbakku/Sam', 'Key name') ?></th>
+                                <th data-column-id="status"><?= __d('Guenbakku/Sam', 'Status') ?></th>
+                                <th data-column-id="restart" data-formatter="commands" data-sortable="false" data-width="120px"><?= __d('Guenbakku/Sam', 'Restart') ?></th>
                             </tr>
                         </thead>
                         <tbody>
