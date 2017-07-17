@@ -19,6 +19,7 @@
     <?= $this->Html->css("{$this->plugin}./packages/bootstrap/css/bootstrap.min.css") ?>
     <?= $this->Html->css("{$this->plugin}./packages/bootstrap-material-design-master/css/bootstrap-material-design.min.css") ?>
     <?= $this->Html->css("{$this->plugin}./packages/bootstrap-material-design-master/css/ripples.min.css") ?>
+    <?= $this->Html->css("{$this->plugin}./packages/font-awesome/css/font-awesome.min.css") ?>
     <?= $this->Html->css("{$this->plugin}.style.css") ?>
     <?= $this->fetch('css') ?>
 </head>
@@ -34,6 +35,7 @@
     <?= $this->Html->script("{$this->plugin}./packages/bootstrap-material-design-master/js/material.min.js") ?>
     <?= $this->Html->script("{$this->plugin}./packages/bootstrap-material-design-master/js/ripples.min.js") ?>
     <?= $this->Html->script("{$this->plugin}.bootbox.min.js") ?>
+    <?= $this->Html->script("{$this->plugin}.plugin.js") ?>
     <script type="text/javascript">$.material.init();</script>
     <?= $this->fetch('script') ?>
 </body>

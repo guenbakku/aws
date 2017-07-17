@@ -8,6 +8,10 @@ $this->append('script', $this->html->script("{$this->plugin}./packages/jquery-bo
 <?php $this->start('script') ?>
 <?php echo $this->fetch('script') ?>
     <script type="text/javascript">
+        var URLS = {
+            api_restart: '<?= $this->Url->build(['controller' => 'Ec2Instances', 'action' => 'api-restart']) ?>',
+        };
+        
         var grid = $("#bootgrid").bootgrid({
             rowCount: -1, // Turn off navigation
             caseSensitive: false,
@@ -20,14 +24,49 @@ $this->append('script', $this->html->script("{$this->plugin}./packages/jquery-bo
             grid.find('.command-restart').click(function(evt) {
                 var rowId = $(this).parents('tr').data('rowId');
                 var instanceId = grid.bootgrid('getCurrentRows')[rowId]['instance-id'];
-                console.log(instanceId);
+                var name = grid.bootgrid('getCurrentRows')[rowId]['name'];
+                var message = "Are you sure you want to restart instance: <ul><li>" + instanceId + ' (' + name + ')' + '</li></ul>';
+                var title = 'Restart Instance';
+                bootbox.confirm({
+                    title: title,
+                    message: message, 
+                    callback: function(result) {
+                        if (result) {
+                            $.ajax({
+                                type: "POST",
+                                url: URLS.api_restart,
+                                data: {instanceId: instanceId},
+                                beforeSend: function(jqXHR, settings) {
+                                    bootbox.dialog({
+                                        title: title,
+                                        message: '<i class="fa fa-spin fa-spinner"></i> Loading...' 
+                                    });
+                                },
+                                success: function(data) {
+                                    bootbox.hideAll();
+                                    bootbox.alert({
+                                        title: title,
+                                        message: 'Restart command sent successfully',
+                                    });
+                                },
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                    bootbox.hideAll();
+                                    bootbox.alert({
+                                        title: title,
+                                        message: 'Fail to send restart command',
+                                    });
+                                },
+                            })
+                        }
+                    }
+                });
             });
-        })
+        })        
     </script>
 <?php $this->end() ?>
 
 <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading test">
         <div class="panel-title"><?= __('EC2 instances') ?></div>
     </div>
     <div class="panel-body">

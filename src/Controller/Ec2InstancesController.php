@@ -34,8 +34,11 @@ class Ec2InstancesController extends AppController {
     }
     
     public function apiRestart() {
-        $instanceId = $this->request->query('instanceId');
+        $this->request->allowMethod(['post']);
+        $instanceId = $this->request->data('instanceId');
         $Instance = new Instance;
+        $Instance->restart($instanceId);
+        $this->render(false);
     }
     
     public function test($id) {

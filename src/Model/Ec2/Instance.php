@@ -15,14 +15,10 @@ class Instance extends Aws{
      * @param   string: region code
      * @return  array: ec2 instances info
      */
-    public function list($region=null) {
-        if (empty($region)) {
-            $region = $this->region();
-        }
-        
+    public function list($region=null) {        
         $ec2 = new Ec2Client([
             'version' => 'latest',
-            'region' => $region,
+            'region' => $region?:$this->region(),
             'credentials' => $this->credentials(),
         ]);
         
@@ -42,12 +38,11 @@ class Instance extends Aws{
     public function restart($instanceId) {
         $ec2 = new Ec2Client([
             'version' => 'latest',
-            'region' => 'us-east-1',
+            'region' => $this->region(),
             'credentials' => $this->credentials(),
         ]);
         
         $result = $ec2->rebootInstances([
-            'DryRun' => true,
             'InstanceIds' => [$instanceId],
         ]);
         
