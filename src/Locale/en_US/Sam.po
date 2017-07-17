@@ -1,0 +1,41 @@
+msgid "us-east-1"
+msgstr "US East (N. Virginia)"
+
+msgid "us-east-2"
+msgstr "US East (Ohio)"
+
+msgid "us-west-1"
+msgstr "US West (N. California)"
+
+msgid "us-west-2"
+msgstr "US West (Oregon)"
+
+msgid "ap-south-1"
+msgstr "Asia Pacific (Mumbai)"
+
+msgid "ap-northeast-2"
+msgstr "Asia Pacific (Seoul)"
+
+msgid "ap-southeast-1"
+msgstr "Asia Pacific (Singapore)"
+
+msgid "ap-southeast-2"
+msgstr "Asia Pacific (Sydney)"
+
+msgid "ap-northeast-1"
+msgstr "Asia Pacific (Tokyo)"
+
+msgid "ca-central-1"
+msgstr "Canada (Central)"
+
+msgid "eu-central-1"
+msgstr "EU (Frankfurt)"
+
+msgid "eu-west-1"
+msgstr "EU (Ireland)"
+
+msgid "eu-west-2"
+msgstr "EU (London)"
+
+msgid "sa-east-1"
+msgstr "South America (São Paulo)"

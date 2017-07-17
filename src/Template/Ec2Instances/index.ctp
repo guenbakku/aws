@@ -17,7 +17,7 @@ $this->append('script', $this->html->script("{$this->plugin}./packages/jquery-bo
             caseSensitive: false,
             formatters: {
                 "commands": function(column, row) {
-                    return '<a class="btn btn-danger btn-sm btn-raised command-restart"><?= __d('instance', 'restart') ?></a>';
+                    return '<a class="btn btn-danger btn-sm btn-raised command-restart"><?= __d($this->plugin, 'restart') ?></a>';
                 }
             }
         }).on("loaded.rs.jquery.bootgrid", function() {
@@ -67,7 +67,7 @@ $this->append('script', $this->html->script("{$this->plugin}./packages/jquery-bo
 
 <div class="panel panel-default">
     <div class="panel-heading test">
-        <div class="panel-title"><?= __('EC2 instances') ?></div>
+        <div class="panel-title"><?= __d($this->plugin, 'EC2 instances') ?></div>
     </div>
     <div class="panel-body">
         <div class="row">
@@ -76,12 +76,12 @@ $this->append('script', $this->html->script("{$this->plugin}./packages/jquery-bo
                     <table id="bootgrid" class="table table-border table-hover">
                         <thead>
                             <tr>
-                                <th data-column-id="name"><?= __d('instance', 'name') ?></th>
-                                <th data-column-id="public-ip-address"><?= __d('instance', 'public ip address') ?></th>
-                                <th data-column-id="instance-id"><?= __d('instance', 'instance id') ?></th>
-                                <th data-column-id="instance-type"><?= __d('instance', 'instance type') ?></th>
-                                <th data-column-id="key-name"><?= __d('instance', 'key name') ?></th>
-                                <th data-column-id="status"><?= __d('instance', 'status') ?></th>
+                                <th data-column-id="name"><?= __d($this->plugin, 'name') ?></th>
+                                <th data-column-id="public-ip-address"><?= __d($this->plugin, 'public ip address') ?></th>
+                                <th data-column-id="instance-id"><?= __d($this->plugin, 'instance id') ?></th>
+                                <th data-column-id="instance-type"><?= __d($this->plugin, 'instance type') ?></th>
+                                <th data-column-id="key-name"><?= __d($this->plugin, 'key name') ?></th>
+                                <th data-column-id="status"><?= __d($this->plugin, 'status') ?></th>
                                 <th data-column-id="restart" data-formatter="commands" data-sortable="false" data-width="120px"><?= __d('instance', 'restart') ?></th>
                             </tr>
                         </thead>
