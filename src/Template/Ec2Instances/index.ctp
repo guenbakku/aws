@@ -1,8 +1,9 @@
 <?php
 use Cake\Utility\Hash;
-    
-$this->append('css', $this->html->css("{$this->plugin}./packages/jquery-bootgrid/css/jquery.bootgrid.min.css"));
-$this->append('script', $this->html->script("{$this->plugin}./packages/jquery-bootgrid/js/jquery.bootgrid.min.js"));
+use Cake\Routing\Router;
+
+$this->append('css', $this->Html->css("{$this->plugin}./packages/jquery-bootgrid/css/jquery.bootgrid.min.css"));
+$this->append('script', $this->Html->script("{$this->plugin}./packages/jquery-bootgrid/js/jquery.bootgrid.min.js"));
 ?>
 
 <?php $this->start('script') ?>
