@@ -1,6 +1,6 @@
 # Simple AWS Manager
 
-A simple CakePHP 3 plugin for manage AWS resources. 
+A simple CakePHP 3 plugin for managing AWS resources. 
 Currently this can only list and restart EC2 instances.
 
 ## Requirement
