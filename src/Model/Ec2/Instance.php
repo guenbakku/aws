@@ -52,6 +52,50 @@ class Instance extends Aws{
     }
     
     /**
+     * Start specific EC2 instance
+     *
+     * @param   string: EC2 instance id
+     * @return  void
+     */
+    public function start($instanceId) {
+        $ec2 = new Ec2Client([
+            'version' => 'latest',
+            'region' => $this->region(),
+            'credentials' => $this->credentials(),
+        ]);
+        
+        $result = $ec2->startInstances([
+            'InstanceIds' => [$instanceId],
+        ]);
+        
+        // According to document, rebootInstances() always returns 
+        // an empty array, so I hard coding 'return true' here.
+        return true;
+    }
+    
+    /**
+     * Stop specific EC2 instance
+     *
+     * @param   string: EC2 instance id
+     * @return  void
+     */
+    public function stop($instanceId) {
+        $ec2 = new Ec2Client([
+            'version' => 'latest',
+            'region' => $this->region(),
+            'credentials' => $this->credentials(),
+        ]);
+        
+        $result = $ec2->stopInstances([
+            'InstanceIds' => [$instanceId],
+        ]);
+        
+        // According to document, rebootInstances() always returns 
+        // an empty array, so I hard coding 'return true' here.
+        return true;
+    }
+    
+    /**
      * Reduce hierarchy number of response from AWS
      *
      * @param   array: instances list

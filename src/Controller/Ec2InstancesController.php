@@ -41,11 +41,19 @@ class Ec2InstancesController extends AppController {
         $this->render(false);
     }
     
-    public function test($id) {
-        // debug($this->request->plugin);
-        // $this->render(false);
+    public function apiStart() {
+        $this->request->allowMethod(['post']);
+        $instanceId = $this->request->data('instanceId');
         $Instance = new Instance;
-        // debug($Instance->restart($id));
-        $Instance->setRegion('Bach'); 
+        $Instance->start($instanceId);
+        $this->render(false);
+    }
+    
+    public function apiStop() {
+        $this->request->allowMethod(['post']);
+        $instanceId = $this->request->data('instanceId');
+        $Instance = new Instance;
+        $Instance->stop($instanceId);
+        $this->render(false);
     }
 }
