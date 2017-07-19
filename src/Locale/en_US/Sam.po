@@ -14,37 +14,50 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: Template/Ec2Instances/index.ctp:22
 msgid "Restart"
 msgstr "Restart"
 
-#: Template/Ec2Instances/index.ctp:72
+msgid "Start"
+msgstr "Start"
+
+msgid "Stop"
+msgstr "Stop"
+
+msgid "Restart"
+msgstr "Restart"
+
+msgid "Command"
+msgstr "Command"
+
 msgid "EC2 instances"
 msgstr "EC2 instances"
 
-#: Template/Ec2Instances/index.ctp:81
 msgid "Name"
 msgstr "Name"
 
-#: Template/Ec2Instances/index.ctp:82
-msgid "Public ip address"
-msgstr "Public ip address"
+msgid "Public IP address"
+msgstr "Public IP address"
 
-#: Template/Ec2Instances/index.ctp:83
+msgid "Private IP address"
+msgstr "Private IP address"
+
+msgid "Public DNS name"
+msgstr "Public DNS name"
+
 msgid "Instance id"
 msgstr "Instance id"
 
-#: Template/Ec2Instances/index.ctp:84
 msgid "Instance type"
 msgstr "Instance type"
 
-#: Template/Ec2Instances/index.ctp:85
 msgid "Key name"
 msgstr "Key name"
 
-#: Template/Ec2Instances/index.ctp:86
 msgid "Status"
 msgstr "Status"
+
+msgid "Status code"
+msgstr "Status code"
 
 #: Region names
 msgid "us-east-1"
