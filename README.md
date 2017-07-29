@@ -51,7 +51,7 @@ return [
 * You can override plugin's config content by simply write same key into your `config/sam.php`.
 * Please set right policy for credentials which you attend to use with this plugin. 
 
-**Sample for AWS Policy:**
+**Sample of AWS Policy:**
 
 ```json
 {
@@ -90,6 +90,6 @@ http://your.domain/path-to-cakephp-root/sam
 
 `path-to-cakephp-root` is optional if your cakephp app is not pointed directed by your domain.
 
-Here is a screenshoot of plugin:
+Here is a screenshot of plugin:
 
 ![Screenshoot](doc/img/screenshot.png)
