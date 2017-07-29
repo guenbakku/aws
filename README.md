@@ -80,7 +80,7 @@ return [
 }
 ```
 
-## Access plugin
+## Access to plugin
 
 Input following URL into web browser's address bar:
 
