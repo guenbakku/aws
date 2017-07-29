@@ -79,3 +79,17 @@ return [
     ]
 }
 ```
+
+## Access plugin
+
+Input following URL into web browser's address bar:
+
+```
+http://your.domain/path-to-cakephp-root/sam
+```
+
+`path-to-cakephp-root` is optional if your cakephp app is not pointed directed by your domain.
+
+Here is a screenshoot of plugin:
+
+![Screenshoot](doc/img/screenshot.png)
